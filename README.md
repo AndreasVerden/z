@@ -10,3 +10,17 @@ There are scope like structures with function like behaviour and a lot of other 
 ## Project Status
 This project was rescued from an old backup I recently found. It was not developed using any best practices and needed a bit of a brush up. Although having been a lot of fun going through old code I have no plans on fixing any further bus or extending on any functionalities. 
 This project was archived for future reference.
+
+## Usage
+To run the provided demo:  
+`python z.py demo.z`  
+
+To see what is happening under the hood:  
+`python z.py demo.z debug`  
+
+Try out the following commands:  
+`help`  
+`_write hello_world`  
+`_write $ inventory`  
+`_data append inventory ticket`  
+`_data set _debug true`
