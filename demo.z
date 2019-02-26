@@ -1,0 +1,107 @@
+{
+    "name": "main",
+    "context": {
+        "inventory": ["note"]
+    },
+    "instructions": [
+        "_write", "you are in an empty street. It is dark; the sole source of light seems to be the moon",
+        "_read", "_default",
+        "_this"
+    ],
+    "actions": [
+        {
+            "name": "look",
+            "instructions": [
+                "_write", "there are two alleys. One to the 'north' and one to the 'south'"
+            ]
+        },
+        {
+            "name": "inventory",
+            "instructions": [
+                "_write", "your inventory contains:",
+                "_write", "$", "inventory"
+            ]
+        },
+        {
+            "name": "south",
+            "instructions": [
+                "_write", "you are in a shady alley; there is a ticket on the ground",
+                "_read", "_default",
+                "_this"
+            ],
+            "actions": [
+                {
+                    "name": "north",
+                    "instructions": [
+                        "main"
+                    ]
+                },
+                {
+                    "name": "ticket",
+                    "instructions": [
+                        "_data", "append", "inventory", "ticket",
+                        "_write", "you picked up a golden ticket"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "north",
+            "instructions": [
+                "_write", "you are in a shady alley; there is a locked door",
+                "_read", "_default",
+                "_this"
+            ],
+            "actions": [
+                {
+                    "name": "south",
+                    "instructions": [
+                        "main"
+                    ]
+                },
+                {
+                    "name": "knock",
+                    "instructions": [
+                        "_write", "< can I check your ticket? [yes/no]",
+                        "_read", "_default"
+                    ],
+                    "actions": [
+                        {
+                            "name": "yes",
+                            "instructions": [
+                                "_check", "contains", "inventory", "ticket", "1", "_valid", "1", "_invalid"
+                            ]
+                        },
+                        {
+                            "name": "no",
+                            "instructions": [
+                                "_invalid"
+                            ]
+                        },
+                        {
+                            "name": "_valid",
+                            "instructions": [
+                                "_write", "< you shall pass, my friend",
+                                "_club"
+                            ]
+                        },
+                        {
+                            "name": "_invalid",
+                            "instructions": [
+                                "_write", "< you need the ticket to enter"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "_club",
+                    "instructions": [
+                        "_write", "you win!",
+                        "_exit"
+                    ]
+                }
+            ]
+        }
+    ]
+
+}
